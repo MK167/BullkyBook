@@ -116,7 +116,7 @@ namespace BullkyBookWeb.Controllers
                 return NotFound();
 
             }
-            var entity = _applicationDbContext.Categories.FirstOrDefault(u => u.ID == ID );
+            var entity = _applicationDbContext.Categories.FirstOrDefault(u => u.ID == ID);
             entity.IsDeleted = true;
             _applicationDbContext.Remove(entity);
             _applicationDbContext.SaveChanges();
