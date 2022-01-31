@@ -15,7 +15,8 @@ namespace BullkyBookWeb.Controllers
         //Get All Data
         public IActionResult Index()
         {
-            IEnumerable<Category> objCategoryList = _applicationDbContext.Categories;
+            IEnumerable<Category> objCategoryList = _applicationDbContext.Categories.Where(x => x.IsDeleted == false);
+            //Category objCategoryList1 = _applicationDbContext.Categories.FirstOrDefault(x => x.IsDeleted == false);
             return View(objCategoryList);
         }
 
@@ -118,7 +119,7 @@ namespace BullkyBookWeb.Controllers
             }
             var entity = _applicationDbContext.Categories.FirstOrDefault(u => u.ID == ID);
             entity.IsDeleted = true;
-            _applicationDbContext.Remove(entity);
+            //_applicationDbContext.Remove(entity);
             _applicationDbContext.SaveChanges();
             return RedirectToAction("Index");
         }
